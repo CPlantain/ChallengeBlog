@@ -6,16 +6,16 @@ require_once "../functions/helpers_db.php";
 require_once "../functions/validation_helpers.php";
 
 // проверка прав доступа пользователя
-require_once "adm_auth.php";
+require_once "./adm_auth.php";
 
 // открываем буферизацию
 ob_start();
 
 $title = 'All categories';
 // шапка 
-require_once "includes/admin_header.php";
+require_once "./includes/admin_header.php";
 // боковое меню
-require_once "includes/admin_sidebar.php";
+require_once "./includes/admin_sidebar.php";
 ?>
 
 <!-- основная часть -->
@@ -32,7 +32,7 @@ require_once "includes/admin_sidebar.php";
 		</tr>
 		
 		<!-- форма добавления новой категории -->
-		<form method="POST" action="categories.php">
+		<form method="POST" action="./categories.php">
 			<tr>
 				<td></td>
 				<td>
@@ -54,7 +54,7 @@ require_once "includes/admin_sidebar.php";
 			// если нажата кнопка "редактировать", отображаем форму с уже имеющимся названием категории из базы данных
 			if((!empty($_GET['edit_category'])) && ($_GET['edit_category'] == $category['cat_id']) &&checkAdmin()): ?>
 
-			<form method="POST" action="categories.php?edit_category=<?= $_GET['edit_category']; ?>">
+			<form method="POST" action="./categories.php?edit_category=<?= $_GET['edit_category']; ?>">
 				<tr>
 					<th><?= $category['cat_id'] ?></th>
 					<td>
@@ -182,7 +182,7 @@ require_once "includes/admin_sidebar.php";
 			execute($pdo, $sql, $data);
 
 			// перенаправляем пользователя на страницу категорий, чтобы избежать повторной отправки формы и возвращаем содержимое буфера
-			header('Location: http://blog/admin/categories.php');
+			header('Location: ./categories.php');
 			ob_get_flush();
 		}
 
@@ -217,4 +217,4 @@ require_once "includes/admin_sidebar.php";
 </div>
 
 <!-- подвал -->
-<?php require_once "includes/admin_footer.php"; ?>
+<?php require_once "./includes/admin_footer.php"; ?>

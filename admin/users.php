@@ -6,13 +6,13 @@ require_once "../functions/helpers_db.php";
 require_once "../functions/validation_helpers.php";
 
 // проверка прав доступа пользователя
-require_once "adm_auth.php";
+require_once "./adm_auth.php";
 
 $title = 'All users';
 // шапка 
-require_once "includes/admin_header.php";
+require_once "./includes/admin_header.php";
 // боковое меню
-require_once "includes/admin_sidebar.php";
+require_once "./includes/admin_sidebar.php";
 ?>
 
 <!-- основная часть -->
@@ -72,7 +72,7 @@ require_once "includes/admin_sidebar.php";
 	?>
 	<ul class="pagination">	
 		<li class="page-item <?= $disabled['item_prev']; ?>">
-	        <a class="page-link" href="/admin/users.php?p=<?= ($p - 1) ?>" aria-label="Previous">
+	        <a class="page-link" href="./users.php?p=<?= ($p - 1) ?>" aria-label="Previous">
 	            <span aria-hidden="true">&laquo;</span>
 	            <span class="sr-only">Previous</span>
 	        </a>
@@ -86,7 +86,7 @@ require_once "includes/admin_sidebar.php";
 			$active = activateItem($p); 
 
 			?>
-			<li class="page-item <?= $active; ?>"><a class="page-link" href="/admin/users.php?p=<?= $p ?>"><?= $p; ?></a></li>
+			<li class="page-item <?= $active; ?>"><a class="page-link" href="./users.php?p=<?= $p ?>"><?= $p; ?></a></li>
 
 		<? endfor; ?>
 		
@@ -97,7 +97,7 @@ require_once "includes/admin_sidebar.php";
 		$disabled = disableItem($p, $pag_data['pages_cnt']);
 		?>
 		<li class="page-item <?= $disabled['item_next']; ?>">
-	        <a class="page-link" href="/admin/users.php?p=<?= ($p + 1) ?>" aria-label="Next">
+	        <a class="page-link" href="./users.php?p=<?= ($p + 1) ?>" aria-label="Next">
 	        	<span aria-hidden="true">&raquo;</span>
 	        	<span class="sr-only">Next</span>
 	        </a>
@@ -107,5 +107,4 @@ require_once "includes/admin_sidebar.php";
 </div>
 
 <!-- подвал -->
-<?php require_once "includes/admin_footer.php"; ?>
-
+<?php require_once "./includes/admin_footer.php"; ?>

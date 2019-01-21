@@ -6,16 +6,16 @@ require_once "../functions/helpers_db.php";
 require_once "../functions/validation_helpers.php";
 
 // проверка прав доступа пользователя
-require_once "adm_auth.php";
+require_once "./adm_auth.php";
 
 // открываем буферизацию
 ob_start();
 
 $title = 'All comments';
 // шапка 
-require_once "includes/admin_header.php";
+require_once "./includes/admin_header.php";
 // боковое меню
-require_once "includes/admin_sidebar.php";
+require_once "./includes/admin_sidebar.php";
 ?>
 
 <!-- основная часть -->
@@ -72,5 +72,5 @@ require_once "includes/admin_sidebar.php";
 </div>
 
 <!-- подвал -->
-<?php require_once "includes/admin_footer.php"; ?>
+<?php require_once "./includes/admin_footer.php"; ?>
 

@@ -40,7 +40,7 @@ function addComment() {
         // создание и обработка ajax запроса
         $.ajax({
             method: "POST",
-            url: "forms/add_comment.php",
+            url: "./forms/add_comment.php",
             cache: false,
             data: { content: content, article_id: article_id },
 
@@ -116,7 +116,7 @@ function controlProfile() {
         // создание и обработка ajax запроса
         $.ajax({
             method: "POST",
-            url: "forms/update_user_data.php",
+            url: "./forms/update_user_data.php",
             cache: false,
             data: { user_id: user_id, login: login, email: email, password: password },
 
@@ -147,7 +147,7 @@ function controlProfile() {
         // создание и обработка ajax запроса
         $.ajax({
             method: "POST",
-            url: "forms/change_avatar.php",
+            url: "./forms/change_avatar.php",
             dataType: 'text',
             cache: false,
             contentType: false,
@@ -183,7 +183,7 @@ function controlProfile() {
         // создание и обработка ajax запроса
         $.ajax({
             method: "POST",
-            url: "forms/password_change.php",
+            url: "./forms/password_change.php",
             cache: false,
             data: { user_id: user_id, cur_password: cur_password, new_password: new_password, new_password_confirm: new_password_confirm },
 
@@ -222,7 +222,7 @@ function controlProfile() {
         // создание и обработка ajax запроса
         $.ajax({
             method: "POST",
-            url: "forms/create_article.php",
+            url: "./forms/create_article.php",
             dataType: 'text',
             cache: false,
             contentType: false,
@@ -272,7 +272,7 @@ function auth() {
         // создание и обработка ajax запроса
         $.ajax({
             method: "POST",
-            url: "forms/login.php",
+            url: "./forms/login.php",
             cache: false,
             data: { login: login, password: password },
 
@@ -284,7 +284,7 @@ function auth() {
                     $('div[name = errorAlert]').hide();
 
                     // после успешной авторизации переадресуем пользователя на главную страницу
-                    document.location = '/';
+                    document.location = './index.php';
                 } else {
                     $('div[name = errorAlert]').show();
                     $('div[name = errorAlert]').text(data);
@@ -318,7 +318,7 @@ function register() {
         // создание и обработка ajax запроса
         $.ajax({
             method: "POST",
-            url: "forms/signup.php",
+            url: "./forms/signup.php",
             cache: false,
             data: { login: login, email: email, password: password, password_confirm: password_confirm },
 
@@ -371,7 +371,7 @@ function updateArticle() {
         // создание и обработка ajax запроса
         $.ajax({
             method: "POST",
-            url: "forms/update_article.php",
+            url: "./forms/update_article.php",
             dataType: 'text',
             cache: false,
             contentType: false,

@@ -1,13 +1,13 @@
 <?php
 // подключаем файл конфигурации и файлы с нужными функциями
-require_once "config.php";
-require_once "functions/helpers.php";
-require_once "functions/helpers_db.php";
+require_once "./config.php";
+require_once "./functions/helpers.php";
+require_once "./functions/helpers_db.php";
 
 $title = 'Main';
 
 // шапка
-require_once "includes/header.php";
+require_once "./includes/header.php";
 
 ?>
 <!-- основная часть -->
@@ -37,7 +37,7 @@ require_once "includes/header.php";
 
 		<h2><?= $article['title']?></h2>
 		<p class="small">
-			<a href="/category.php?id=<?= $article['category_id']?>"><?= $article['name']?></a>
+			<a href="./category.php?id=<?= $article['category_id']?>"><?= $article['name']?></a>
 		</p>
 
 		<?php 
@@ -45,15 +45,15 @@ require_once "includes/header.php";
     	if(checkImage($article['picture'])): ?>
 
 	    	<div class="px-5">
-	    		<img src="/uploads/article_images/<?= $article['picture']; ?>" class="imgart img-thumbnail my-2" alt="">
+	    		<img src="./uploads/article_images/<?= $article['picture']; ?>" class="imgart img-thumbnail my-2" alt="">
 	    	</div>
 
 	    <? endif; ?>
 		
 		<p><?= $article['description']?></p>
-		<a class="btn btn-outline-primary mr-2 mb-4" href="article.php?id=<?= $article['id']?>">Read more...</a>
+		<a class="btn btn-outline-primary mr-2 mb-4" href="./article.php?id=<?= $article['id']?>">Read more...</a>
 		<p>
-			<a href="/blog.php?user_id=<?=$article['user_id']?>">
+			<a href="./blog.php?user_id=<?=$article['user_id']?>">
 			@<?= $article['login']?></a> 
 			at <?= date("d.m.Y", strtotime($article['pub_date'])); ?>
 		</p>
@@ -70,7 +70,7 @@ require_once "includes/header.php";
 
 	<ul class="pagination">	
 		<li class="page-item <?= $disabled['item_prev']; ?>">
-	        <a class="page-link" href="/index.php?p=<?= ($p - 1) ?>" aria-label="Previous">
+	        <a class="page-link" href="./index.php?p=<?= ($p - 1) ?>" aria-label="Previous">
 	            <span aria-hidden="true">&laquo;</span>
 	            <span class="sr-only">Previous</span>
 	        </a>
@@ -84,7 +84,7 @@ require_once "includes/header.php";
 			$active = activateItem($p); ?>
 
 			<li class="page-item <?= $active; ?>">
-				<a class="page-link" href="/index.php?p=<?= $p ?>"><?= $p; ?></a>
+				<a class="page-link" href="./index.php?p=<?= $p ?>"><?= $p; ?></a>
 			</li>
 
 		<? endfor; ?>
@@ -97,7 +97,7 @@ require_once "includes/header.php";
 
 		?>
 		<li class="page-item <?= $disabled['item_next']; ?>">
-	        <a class="page-link" href="/index.php?p=<?= ($p + 1) ?>" aria-label="Next">
+	        <a class="page-link" href="./index.php?p=<?= ($p + 1) ?>" aria-label="Next">
 	        	<span aria-hidden="true">&raquo;</span>
 	        	<span class="sr-only">Next</span>
 	        </a>
@@ -107,7 +107,7 @@ require_once "includes/header.php";
 </div>
 
 <!-- сайдбар -->
-<? require_once "includes/sidebar.php"; ?>
+<? require_once "./includes/sidebar.php"; ?>
 
 <!-- футер -->
-<? require_once "includes/footer.php"; ?>
+<? require_once "./includes/footer.php"; ?>

@@ -6,7 +6,7 @@ require_once "../functions/helpers_db.php";
 require_once "../functions/validation_helpers.php";
 
 // проверка прав доступа пользователя
-require_once "adm_auth.php";
+require_once "./adm_auth.php";
 
 // открываем буферизацию
 ob_start();
@@ -21,9 +21,9 @@ $article = getRow($pdo, $sql, $data);
 
 $title = 'Edit ' . $article['title'];
 // шапка 
-require_once "includes/admin_header.php";
+require_once "./includes/admin_header.php";
 // боковое меню
-require_once "includes/admin_sidebar.php";
+require_once "./includes/admin_sidebar.php";
 ?>
 
 <!-- основная часть -->
@@ -32,7 +32,7 @@ require_once "includes/admin_sidebar.php";
 	<!-- форма редактирования статьи -->
 	<h3>Edit article:</h3>
 
-	<form method="POST" action="edit_article.php?id=<?= $id; ?>" enctype="multipart/form-data">
+	<form method="POST" action="./edit_article.php?id=<?= $id; ?>" enctype="multipart/form-data">
 
 		<div class="form-group row">
 		    <div class="col-md-11">
@@ -195,7 +195,7 @@ require_once "includes/admin_sidebar.php";
 		execute($pdo, $sql, $data);
 
 		// перенаправляем пользователя на страницу редактирования выбранной статьи и возвращаем содержимое буфера
-		header('Location: http://blog/admin/edit_article.php?id=' . $_GET['id']);
+		header('Location: ./edit_article.php?id=' . $_GET['id']);
 		ob_get_flush();
 	}
 	?>
@@ -203,5 +203,4 @@ require_once "includes/admin_sidebar.php";
 </div>
 
 <!-- подвал -->
-<?php require_once "includes/admin_footer.php"; ?>
-
+<?php require_once "./includes/admin_footer.php"; ?>

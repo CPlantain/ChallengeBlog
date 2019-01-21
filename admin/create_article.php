@@ -6,16 +6,16 @@ require_once "../functions/helpers_db.php";
 require_once "../functions/validation_helpers.php";
 
 // проверка прав доступа пользователя
-require_once "adm_auth.php";
+require_once "./adm_auth.php";
 
 // открываем буферизацию
 ob_start();
 
 $title = 'Create article';
 // шапка 
-require_once "includes/admin_header.php";
+require_once "./includes/admin_header.php";
 // боковое меню
-require_once "includes/admin_sidebar.php";
+require_once "./includes/admin_sidebar.php";
 ?>
 
 <!-- основная часть -->
@@ -24,7 +24,7 @@ require_once "includes/admin_sidebar.php";
 	<!-- форма создания новой статьи -->
 	<h3>Create new article:</h3>
 
-	<form method="POST" action="create_article.php" enctype="multipart/form-data">
+	<form method="POST" action="./create_article.php" enctype="multipart/form-data">
 
 		<div class="form-group row">
 		    <div class="col-md-11">
@@ -175,7 +175,7 @@ require_once "includes/admin_sidebar.php";
 		execute($pdo, $sql, $data);
 
 		// перенаправляем пользователя на страницу добавления статьи, чтобы избежать повторной отправки формы и возвращаем содержимое буфера
-		header('Location: http://blog/admin/create_article.php');
+		header('Location: ./create_article.php');
 		ob_get_flush();
 	}
 	?>
@@ -183,5 +183,5 @@ require_once "includes/admin_sidebar.php";
 </div>
 
 <!-- подвал -->
-<?php require_once "includes/admin_footer.php"; ?>
+<?php require_once "./includes/admin_footer.php"; ?>
 

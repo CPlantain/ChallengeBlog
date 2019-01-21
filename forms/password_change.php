@@ -25,7 +25,7 @@ if(isFormSend()) {
 	// проверяем права доступа пользователя
 	if(!checkAuthor($user['id'])){
 		// в случае отказа адресуем на главную
-		header('Location: /');
+		header('Location: ./index.php');
 		exit();
 	}
 	else {

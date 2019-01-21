@@ -1,13 +1,13 @@
 <?php
 // подключаем файл конфигурации и файлы с нужными функциями
-require_once "config.php";
-require_once "functions/helpers.php";
-require_once "functions/helpers_db.php";
+require_once "./config.php";
+require_once "./functions/helpers.php";
+require_once "./functions/helpers_db.php";
 
 $title = 'Sign up';
 
 // шапка
-require_once "includes/header.php"; 
+require_once "./includes/header.php"; 
 ?>
 
 <div class="main col-md-8 px-5 pt-1">
@@ -68,7 +68,7 @@ require_once "includes/header.php";
 </div>	
 
 <!-- сайдбар -->			
-<?php require_once "includes/sidebar.php"; ?>
+<?php require_once "./includes/sidebar.php"; ?>
 
 <!-- футер -->
-<?php require_once "includes/footer.php"; ?>
+<?php require_once "./includes/footer.php"; ?>

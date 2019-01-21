@@ -1,8 +1,8 @@
 <?php
 // подключаем файл конфигурации и файлы с нужными функциями
-require_once "config.php";
-require_once "functions/helpers.php";
-require_once "functions/helpers_db.php";
+require_once "./config.php";
+require_once "./functions/helpers.php";
+require_once "./functions/helpers_db.php";
 
 // сохраняем id выбранной категории в переменную
 $id = $_GET['id'];
@@ -16,7 +16,7 @@ $articles = getRow($pdo, $sql, $data);
 $title = 'All posts from ' . $articles['name'];
 
 //шапка
-require_once "includes/header.php"; 
+require_once "./includes/header.php"; 
 ?>
 
 <div class="main col-md-8 px-5 py-3"5">
@@ -34,7 +34,7 @@ require_once "includes/header.php";
 		    	// если у статьи есть картинка, выводим её
 		    	if(checkImage($article['picture'])): ?>
 
-			    	<img src="/uploads/article_images/<?= $article['picture']; ?>" class="blogimg img-thumbnail my-2" alt="">
+			    	<img src="./uploads/article_images/<?= $article['picture']; ?>" class="blogimg img-thumbnail my-2" alt="">
 
 			    <? endif; ?>
 					
@@ -43,12 +43,12 @@ require_once "includes/header.php";
 					<h2 class="blog_h2"><?= $article['title']; ?></h2>
 
 					<small class="btn_block">
-						<a href="/category.php?id=<?= $article['category_id']?>"><?= $article['name']; ?></a>
+						<a href="./category.php?id=<?= $article['category_id']?>"><?= $article['name']; ?></a>
 					</small>
 					<p><?= $article['description']; ?></p>
-					<a class="btn btn-outline-primary btn-sm mr-2 mb-4" href="/article.php?id=<?= $article['id']?>">Read more...<a><br>									
+					<a class="btn btn-outline-primary btn-sm mr-2 mb-4" href="./article.php?id=<?= $article['id']?>">Read more...<a><br>									
 					<p class="mb-2 btn_block">
-						<a href="/blog.php?user_id=<?= $article['user_id']?>">@<?= $article['login']; ?></a>
+						<a href="./blog.php?user_id=<?= $article['user_id']?>">@<?= $article['login']; ?></a>
 						at <?=date("d.m.y",strtotime($article['pub_date']))?>
 					</p>	
 					<hr>					
@@ -60,7 +60,7 @@ require_once "includes/header.php";
 </div>
 
 <!-- сайдбар -->
-<?php require_once "includes/sidebar.php"; ?>
+<?php require_once "./includes/sidebar.php"; ?>
 
 <!-- футер -->
-<?php require_once "includes/footer.php"; ?>
+<?php require_once "./includes/footer.php"; ?>

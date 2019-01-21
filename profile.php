@@ -1,20 +1,20 @@
 <?php
 // подключаем файл конфигурации и файлы с нужными функциями
-require_once "config.php";
-require_once "functions/helpers.php";
-require_once "functions/helpers_db.php";
+require_once "./config.php";
+require_once "./functions/helpers.php";
+require_once "./functions/helpers_db.php";
 
 // проверяем права доступа к профилю пользователя
 if(!checkAuthor($_GET['user_id'])){
 	// адресуем на главную в случае отказа
-	header('Location: /');
+	header('Location: ./index.php');
 	exit();
 }
 
 $title = 'My profile';
 
 // шапка
-require_once "includes/header.php";
+require_once "./includes/header.php";
 ?>
 
 <div class="main col-md-8 px-5 pt-1">
@@ -35,7 +35,7 @@ require_once "includes/header.php";
 			$user['avatar'] = 'default_icon.png';
 		}
 		?>
-		<img src="uploads/avatars/<?= $user['avatar']; ?>" class="profile_img rounded-circle my-2 float-right" alt="">
+		<img src="./uploads/avatars/<?= $user['avatar']; ?>" class="profile_img rounded-circle my-2 float-right" alt="">
 
 		<p class="profile_p">Your info:</p>
 
@@ -199,7 +199,7 @@ require_once "includes/header.php";
 </div>
 
 <!-- сайдбар -->			
-<?php require_once "includes/sidebar.php"; ?>
+<?php require_once "./includes/sidebar.php"; ?>
 
 <!-- футер -->
-<?php require_once "includes/footer.php"; ?>
+<?php require_once "./includes/footer.php"; ?>

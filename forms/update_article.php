@@ -26,7 +26,7 @@ if(isFormSend()) {
 	// проверяем права доступа пользователя к статье
 	if(!checkAuthor($article['user_id'])){
 		// в случае отказа адресуем на главную
-		header('Location: /');
+		header('Location: ./index.php');
 		exit();
 	}
 	else {

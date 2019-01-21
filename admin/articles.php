@@ -6,16 +6,16 @@ require_once "../functions/helpers_db.php";
 require_once "../functions/validation_helpers.php";
 
 // проверка прав доступа пользователя
-require_once "adm_auth.php";
+require_once "./adm_auth.php";
 
 // открываем буферизацию
 ob_start();
 
 $title = 'All articles';
 // шапка 
-require_once "includes/admin_header.php";
+require_once "./includes/admin_header.php";
 // боковое меню
-require_once "includes/admin_sidebar.php";
+require_once "./includes/admin_sidebar.php";
 ?>
 
 <!-- основная часть -->
@@ -23,7 +23,7 @@ require_once "includes/admin_sidebar.php";
 
 	<!-- вывод всех статей -->
 	<h3>Articles:</h3>
-	<a href="create_article.php" class="btn btn-primary mt-3">Create new article</a>
+	<a href="./create_article.php" class="btn btn-primary mt-3">Create new article</a>
 
 	<!-- постраничный вывод всех статей из бд -->
 	<?php 
@@ -80,7 +80,7 @@ require_once "includes/admin_sidebar.php";
 					<!-- кнопки удаления и редактирования статьи -->
 					<a href="?delete_article=<?=  $article['id']; ?>" class="delete_btn btn btn-outline-light btn-sm ml-2 mb-2 float-right">&#9747;</a>
 
-					<a href="edit_article.php?id=<?=  $article['id']; ?>" class="edit_btn btn btn-light btn-sm mb-2 float-right">Edit</a>
+					<a href="./edit_article.php?id=<?=  $article['id']; ?>" class="edit_btn btn btn-light btn-sm mb-2 float-right">Edit</a>
 					<?php
 					if($article['hidden'] == 0): ?>
 
@@ -132,8 +132,18 @@ require_once "includes/admin_sidebar.php";
 	if((!empty($_GET['delete_article'])) && checkAdmin()){
 		if(is_numeric($_GET['delete_article'])){
 
-			// достаём имя изображения статьи
+			// проверяем, есть ли у статьи комментарии
 			$data = [ 'id' => $_GET['delete_article'] ];
+			$sql = 'SELECT COUNT(*) as count FROM comments WHERE article_id = :id';
+			$comments = getRow($pdo, $sql, $data);
+			
+			// если есть, удаляем их
+			if($comments['count'] != 0){
+				$sql = 'DELETE FROM comments WHERE article_id = :id';
+				execute($pdo, $sql, $data);
+			}
+
+			// достаём имя изображения статьи
 			$sql = 'SELECT picture FROM articles WHERE id = :id';
 			$article = getRow($pdo, $sql, $data);
 
@@ -165,7 +175,7 @@ require_once "includes/admin_sidebar.php";
 	?>
 	<ul class="pagination">	
 		<li class="page-item <?= $disabled['item_prev']; ?>">
-	        <a class="page-link" href="/admin/articles.php?p=<?= ($p - 1) ?>" aria-label="Previous">
+	        <a class="page-link" href="./articles.php?p=<?= ($p - 1) ?>" aria-label="Previous">
 	            <span aria-hidden="true">&laquo;</span>
 	            <span class="sr-only">Previous</span>
 	        </a>
@@ -179,7 +189,7 @@ require_once "includes/admin_sidebar.php";
 			$active = activateItem($p); 
 
 			?>
-			<li class="page-item <?= $active; ?>"><a class="page-link" href="/admin/articles.php?p=<?= $p ?>"><?= $p; ?></a></li>
+			<li class="page-item <?= $active; ?>"><a class="page-link" href="./articles.php?p=<?= $p ?>"><?= $p; ?></a></li>
 
 		<? endfor; ?>
 		
@@ -190,7 +200,7 @@ require_once "includes/admin_sidebar.php";
 		$disabled = disableItem($p, $pag_data['pages_cnt']);
 		?>
 		<li class="page-item <?= $disabled['item_next']; ?>">
-	        <a class="page-link" href="/admin/articles.php?p=<?= ($p + 1) ?>" aria-label="Next">
+	        <a class="page-link" href="./articles.php?p=<?= ($p + 1) ?>" aria-label="Next">
 	        	<span aria-hidden="true">&raquo;</span>
 	        	<span class="sr-only">Next</span>
 	        </a>
@@ -200,5 +210,5 @@ require_once "includes/admin_sidebar.php";
 </div>
 
 <!-- подвал -->
-<?php require_once "includes/admin_footer.php"; ?>
+<?php require_once "./includes/admin_footer.php"; ?>
 

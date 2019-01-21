@@ -15,12 +15,23 @@ $article = getRow($pdo, $sql, $data);
 // проверяем права доступа пользователя к этой статье
 if(!checkAuthor($article['user_id'])){
 	// в случае отказа адресуем на главную
-	header('Location: /');
+	header('Location: ./index.php');
 	exit();
 }
 
-// если пользователь прошел проверку, сначала удаляем картинку статьи с сервера
+// если пользователь прошел проверку смотрим, есть ли у статьи комментарии
 else {
+	$data = [ 'article_id' => $id ];
+	$sql = 'SELECT COUNT(*) as count FROM comments WHERE article_id = :article_id';
+	$comments = getRow($pdo, $sql, $data);
+	
+	// если есть, удаляем их
+	if($comments['count'] != 0){
+		$sql = 'DELETE FROM comments WHERE article_id = :article_id';
+		execute($pdo, $sql, $data);
+	}
+
+	// если у статьи есть изображение, удаляем его с сервера
 	if(checkImage($article['picture'])){
 
 		$path = '../uploads/article_images/';
@@ -32,10 +43,7 @@ else {
 	$sql = 'DELETE FROM articles WHERE id = :id';
 	execute($pdo, $sql, $data);
 
-	// возвращаем пользователя на страницу, с которой он перешёл, либо на главную
-	$redirect = $_SERVER['HTTP_REFERER'];
-	if($redirect == 'http://blog/article.php?id=' . $_GET['id']){
-		$redirect = '/';
-	}
-	header('Location: ' . $redirect);
+	// возвращаем пользователя на страницу блога текущего пользователя
+	
+	header('Location: ../blog.php?user_id=' . $_SESSION['user']['id']);
 }

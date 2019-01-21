@@ -1,7 +1,3 @@
-<?php
-	require_once "config.php";
-
-?>
 <!--"шаблон" боковой колонки сайта -->
 
 <div class="col-md-3 offset-md-1">
@@ -17,7 +13,7 @@
 
 			foreach ($categories as $category): ?>
 				<li>
-					<a href="/category.php?id=<?= $category['id']; ?>"><?= $category['name']; ?></a>
+					<a href="./category.php?id=<?= $category['id']; ?>"><?= $category['name']; ?></a>
 				</li>
 			<? endforeach; ?>
 		</ul>
@@ -42,18 +38,18 @@
 
 			if(checkImage($article['picture'])): ?>
 	    		<div class="px-2">
-	    			<img src="../../uploads/article_images/<?= $article['picture']; ?>" class="sidebar_img img-thumbnail my-2" alt="">
+	    			<img src="./uploads/article_images/<?= $article['picture']; ?>" class="sidebar_img img-thumbnail my-2" alt="">
 	    		</div>
 			<? endif; ?>
 
 			<h3 class="sidebar_h3"><?= $article['title']; ?></h3>
 			<p><?= $article['description']; ?></p>
-			<a class="btn btn-outline-primary btn-sm mr-2 mb-4" href="/article.php?id=<?=$article['id']?>">Read more...<a><br>
+			<a class="btn btn-outline-primary btn-sm mr-2 mb-4" href="./article.php?id=<?=$article['id']?>">Read more...<a><br>
 			<small>
-				<a href="/category.php?id=<?= $article['category_id']; ?>"><?= $article['name']; ?></a>
+				<a href="./category.php?id=<?= $article['category_id']; ?>"><?= $article['name']; ?></a>
 			</small><br>
 			<p class="sidebar_login" class="mb-2">
-				<a href="/blog.php?user_id=<?= $article['user_id']?>">@<?= $article['login']; ?></a>
+				<a href="./blog.php?user_id=<?= $article['user_id']?>">@<?= $article['login']; ?></a>
 				at <?=date("d.m.y",strtotime($article['pub_date']))?>
 			</p>
 			<hr>

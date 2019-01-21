@@ -1,8 +1,8 @@
 <?php
 // подключаем файл конфигурации и файлы с нужными функциями
-require_once "config.php";
-require_once "functions/helpers.php";
-require_once "functions/helpers_db.php";
+require_once "./config.php";
+require_once "./functions/helpers.php";
+require_once "./functions/helpers_db.php";
 
 // сохраняем id выбранной статьи в переменную
 $id = $_GET['id'];
@@ -15,7 +15,7 @@ $article = getRow($pdo, $sql, $data);
 // проверяем, свою ли статью пользователь хочет редактировать и авторизован ли он
 if(!checkAuthor($article['user_id'])){
 	// если нет, переадресуем на главную
-	header('Location: /');
+	header('Location: ./index.php');
 	exit();
 }
 
@@ -23,7 +23,7 @@ if(!checkAuthor($article['user_id'])){
 $title = 'Edit ' . $article['title'];
 
 // шапка
-require_once "includes/header.php";
+require_once "./includes/header.php";
 
 ?>					
 <div class="main col-md-8 px-5 py-3">
@@ -80,7 +80,7 @@ require_once "includes/header.php";
 			    	if(checkImage($article['picture'])): ?>
 
 				    	<p class="col-form-label">Article picture:</p>
-				    	<img src="uploads/article_images/<?= $article['picture']; ?>" class="edit_img img-thumbnail my-2">
+				    	<img src="./uploads/article_images/<?= $article['picture']; ?>" class="edit_img img-thumbnail my-2">
 
 				    <? endif; ?>
 					
@@ -110,7 +110,7 @@ require_once "includes/header.php";
 </div>
 
 <!-- сайдбар -->
-<?php require_once "includes/sidebar.php"; ?>
+<?php require_once "./includes/sidebar.php"; ?>
 
 <!-- футер -->
-<?php require_once "includes/footer.php"; ?>
+<?php require_once "./includes/footer.php"; ?>

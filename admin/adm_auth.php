@@ -8,7 +8,7 @@ $user = getRow($pdo, $sql, $data);
 if(!checkUser('user')){
 
 	// если пользователь не авторизован, переадресуем на страницу авторизации
-	header('Location: /login.php');
+	header('Location: ../login.php');
 	exit();
 }
 else if($user['isAdmin'] != 1){

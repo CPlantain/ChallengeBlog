@@ -16,7 +16,7 @@
 		    		<div class="row">
 		        		<h1 class="adm_h1 my-auto mr-md-auto font-weight-normal ml-4 display-4" id="top">Admin Panel</h1>  			
 
-						<a class="btn btn-outline-primary mx-4" href="/">Main</a>		
+						<a class="btn btn-outline-primary mx-4" href="../index.php">Main</a>		
 		    		</div>
 		    	</div>
 		    </div>
